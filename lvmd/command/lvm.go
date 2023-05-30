@@ -160,6 +160,21 @@ func ListVolumeGroups() ([]*VolumeGroup, error) {
 	return groups, nil
 }
 
+func Scan() error {
+	var stdout bytes.Buffer
+	c := wrapExecCommand("pvscan", "--cache")
+
+	c.Env = os.Environ()
+	c.Env = append(c.Env, "LC_ALL=C")
+	c.Stdout = &stdout
+	c.Stderr = os.Stderr
+
+	log.Info("running pvscan", map[string]interface{}{
+		"output": stdout.String(),
+	})
+	return c.Run()
+}
+
 // FindVolume finds a named logical volume in this volume group.
 func (g *VolumeGroup) FindVolume(name string) (*LogicalVolume, error) {
 	for _, volume := range g.ListVolumes() {

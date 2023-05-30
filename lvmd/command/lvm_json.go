@@ -2,6 +2,7 @@ package command
 
 import (
 	"encoding/json"
+	"github.com/cybozu-go/log"
 	"strconv"
 	"strings"
 )
@@ -154,6 +155,10 @@ func parseFullReportResult(data []byte) ([]vg, []lv, error) {
 		vgs = append(vgs, report.VG...)
 		lvs = append(lvs, report.LV...)
 	}
+	log.Info("parsed lvm fullreport", map[string]interface{}{
+		"vgs": vgs,
+		"lvs": lvs,
+	})
 	return vgs, lvs, nil
 }
 

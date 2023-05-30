@@ -56,6 +56,12 @@ func subMain() error {
 		return err
 	}
 
+	if err := command.Scan(); err != nil {
+		log.Error("Error while running scan ", map[string]interface{}{
+			"error": err.Error(),
+		})
+	}
+
 	vgs, err := command.ListVolumeGroups()
 	if err != nil {
 		log.Error("Error while retrieving volume groups", map[string]interface{}{})

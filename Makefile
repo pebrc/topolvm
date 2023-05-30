@@ -21,7 +21,7 @@ PROTOC := PATH=$(BINDIR):$(PATH) $(BINDIR)/protoc -I=$(shell pwd)/include:.
 PACKAGES := unzip lvm2 xfsprogs thin-provisioning-tools patch
 ENVTEST_ASSETS_DIR := $(shell pwd)/testbin
 
-GO_FILES=$(shell find -name '*.go' -not -name '*_test.go')
+GO_FILES=$(shell find . -name '*.go' -not -name '*_test.go')
 GOOS := $(shell go env GOOS)
 GOARCH := $(shell go env GOARCH)
 GOFLAGS =

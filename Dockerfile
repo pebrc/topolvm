@@ -20,6 +20,7 @@ RUN apt-get update \
         btrfs-progs \
         file \
         xfsprogs \
+        lvm2 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build-topolvm /workdir/build/hypertopolvm /hypertopolvm
